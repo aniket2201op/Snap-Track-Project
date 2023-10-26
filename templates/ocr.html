@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OCR Roll Number Extractor</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 4px;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .confirmation {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .confirmation button {
+            background-color: #28a745;
+        }
+
+        .confirmation button:hover {
+            background-color: #218838;
+        }
+
+        .roll-numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>OCR Roll Number Extractor</h1>
+
+        <form method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+                Upload Image
+            </label>
+            <input id="file-upload" type="file" name="file" accept="image/*">
+            <button type="submit">Extract Roll Numbers</button>
+
+            <!-- <b>OR</b>
+            <button id="start-btn" type="button">Start voice recognition</button> -->
+        </form>
+
+        {% if image_path %}
+        <div>
+            <h2>Uploaded Image:</h2>
+            <img src="{{ image_path }}" alt="Uploaded Image" class="img-fluid"
+                style="max-width: 100%; border-radius: 8px;">
+
+            {% if roll_numbers %}
+            <div class="confirmation"
+                style="background-color: #f8f9fa; max-width: 600px; margin: 50px auto; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <h2 style="text-align: center; color: #007bff;">Extracted Roll Numbers:</h2>
+                <form id="confirmForm" method="POST" action="/confirm" style="margin-top: 20px;">
+                    <div class="roll-numbers-grid">
+                        {% for roll_number in roll_numbers %}
+                        {% if roll_number.isdigit() %}
+                        <label style="display: block; margin-bottom: 10px;">
+                            <input type="checkbox" name="confirmedNumbers" value="{{ roll_number }}" checked>
+                            <span style="margin-left: 10px;">{{ roll_number }}</span>
+                        </label>
+
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+                        <input type="date" name="attendance_date">
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+
+                        <select name="filename">
+                            <option value="">Select</option>
+                            {% for subject in data %}
+                            <option value="{{ subject }}">{{ subject }}</option>
+                            {% endfor %}
+                        </select>
+
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <button id="confirmButton" type="button"
+                            style="background-color: #007bff; color: #fff; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px;">Confirm</button>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        <div class="back-link">
+            <center><a href="{{url_for('home')}}">Back to Home</a> </center>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (needed for Bootstrap functionality) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('confirmButton').addEventListener('click', function () {
+            var additionalNumbers = prompt("Please enter additional roll numbers, separated by commas:");
+            if (additionalNumbers) {
+                additionalNumbers.split(',').forEach(function (number) {
+                    var input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = 'confirmedNumbers';
+                    input.value = number.trim();
+                    document.getElementById('confirmForm').appendChild(input);
+                });
+            }
+            document.getElementById('confirmForm').submit();
+        });
+
+
+    </script>
+</body>
+
+</html>

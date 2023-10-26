@@ -1,0 +1,125 @@
+<!--
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Register </title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">			
+	</head>
+	<body></br></br></br></br></br>
+		<div align="center">
+		<div align="center" class="border">
+			<div class="header">
+				<h1 class="word">Register</h1>
+			</div></br></br></br>
+			<h2 class="word">
+				<form action="{{ url_for('register') }}" method="post">
+				<div class="msg">{{ msg }}</div>
+					<input id="username" name="username" type="text" placeholder="Enter Your Username" class="textbox"/></br></br>
+					<input id="password" name="password" type="password" placeholder="Enter Your Password" class="textbox"/></br></br>
+					<input id="email" name="email" type="text" placeholder="Enter Your Email ID" class="textbox"/></br></br>
+					<input type="submit" class="btn" value="Sign Up"></br>
+				</form>
+			</h2>
+			<p class="bottom">Already have an account? <a class="bottom" href="{{url_for('login')}}"> Sign In here</a></p>
+		</div>
+		</div>
+	</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Snap Track | Create account</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css'><link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+  <script src="{{ url_for('static', filename='register.js') }}"></script>
+  <!-- <link rel="shortcut icon" type="image/png" href="images/logo.png"> -->
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div class="container">
+	<div class="header">
+		<h2>Create New Account</h2>
+	</div>
+	<form id="form" class="form" method="POST">
+        
+		<div class="form-control">
+			<label for="username">Username</label>
+			<input type="text" placeholder="aniket021" id="username" name="username" required/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<div class="form-control">
+			<label for="branch">Branch</label>
+			<!-- <input type="text" placeholder="Information Technology" id="branch" name="branch" required/> -->
+			<select name="branch" id="branch" class="branch" required>
+				<option value="">Select</option>
+				<option value="IT">Information Technology</option>
+				<option value="COMPS">Computer Science</option>
+				<option value="ELEC">Electrical</option>
+				<option value="MECH">Mechanical</option>
+				<option value="AIDS">AIDS</option>
+				<option value="EXTC">EXTC</option>
+				
+			  </select>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<div class="form-control">
+			<label for="username">Year</label>
+			<input type="text" placeholder="1" id="year" name="year" required/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<div class="form-control">
+			<label for="sem">Sem</label>
+			<!-- <input type="text" placeholder="Information Technology" id="branch" name="branch" required/> -->
+			<select name="sem" id="sem" class="branch" required>
+				<option value="">Select</option>
+				<option value="odd">Odd</option>
+				<option value="even">Even</option>
+			  </select>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+
+		<div class="form-control">
+			<label for="subject">Subject</label>
+			<input type="text" placeholder="aniket021" id="subject" name="subject" required/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+
+		<div class="form-control">
+			<label for="email">Email</label>
+			<input id="email" name="email" type="text" placeholder="Enter Your Email ID" required/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		
+		<div class="form-control">
+			<label for="username">Password</label>
+			<input type="password" placeholder="Password" id="password" name="password" required minlength="6"/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		
+		<!-- <button value="CreateAccount">Submit</button> -->
+        <input class="button" type="submit" value="Submit">
+        <a class="link" href="{{url_for('login')}}">Already Have an account</a>
+	</form>
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="submit"][name="action"] {
+            margin-right: 8px;
+        }
+
+        input[type="submit"][name="action"][value="Delete"] {
+            background-color: #d9534f;
+        }
+
+        input[type="submit"][name="action"][value="Delete"]:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <form method="POST" action="/update_profile">
+        {{msg}}
+        <h2>Update Your Subject</h2>
+
+        <label for="year">Year:</label>
+        <input type="text" name="year" value="{{ data.year }}" required>
+
+        <label for="year">Branch:</label>
+        <input type="text" name="branch" value="{{ data.branch }}" required>
+
+        <label for="subject">Subject:</label>
+        <input type="text" name="subject" value="{{ data.subject }}" required>
+
+        <label for="sem">Semester:</label>
+        <input type="text" name="sem" value="{{ data.sem }}" required>
+
+        <input type="submit" name="action" value="Update">
+        <input type="submit" name="action" value="Delete" onclick="return confirm('Are you sure you want to delete?')">
+        <input type="submit" name="action" value="Add">
+        <div class="back-link">
+            <center><a href="{{url_for('home')}}">Back to Home</a> </center>
+        </div>
+    </form>
+    
+</body>
+</html>

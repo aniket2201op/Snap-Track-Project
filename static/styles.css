@@ -1,0 +1,95 @@
+/* static/styles.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+
+}
+
+.container3 {
+    margin-top: 100px;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Styling for user details */
+.user-details {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.user-details p {
+    margin: 0;
+}
+
+/* Styling for links */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+
+.user-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-image img {
+    max-width: 35%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.user-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-info-left,
+.user-info-right {
+    flex: 1;
+}
+
+.user-info-left p,
+.user-info-right p {
+    margin-bottom: 15px;
+}
+
+/* Styling for user image */
+.user-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-image img {
+    max-width: 35%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Upload Excel and Search</title>
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        input[type="file"],
+        input[type="text"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: #3498db;
+            margin-top: 20px;
+        }
+
+.user-details {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-top: 20px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+.user-details h2 {
+    text-align: center;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.user-image img{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.user-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.user-info p {
+    font-size: 18px;
+}
+
+.user-info-left {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-info-right {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+    </style>
+</head>
+
+<body>
+    <h1>Upload Excel and Search</h1>
+
+    <form action="/user" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload Excel</button>
+    </form>
+
+    {% if message %}
+        <p style="color: #27ae60;">{{ message }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p style="color: #e74c3c;">{{ error }}</p>
+    {% endif %}
+
+    <form method="post">
+        <label for="prn">Enter PRN:</label>
+        <input type="text" name="prn" required>
+        <button type="submit">Search</button>
+    </form>
+
+
+
+{% if user %}
+<div class="user-details">
+    <h2>User Details</h2>
+    <div class="user-image">
+        <img src="/static/default.jpg" alt="">
+    </div>
+    <div class="user-info">
+        <div class="user-info-left">
+            <p><strong>PRN:</strong> {{ user[0]['PRN'] }}</p>
+            <p><strong>Name:</strong> {{ user[0]['Name'] }}</p>
+            <p><strong>Email:</strong> {{ user[0]['Email'] }}</p>
+        </div>
+        <div class="user-info-right">
+            <p><strong>Phone:</strong> {{ user[0]['Phone'] or 'N/A' }}</p>
+            <p><strong>Blood Group:</strong> {{ user[0]['Blood Group'] or 'N/A' }}</p>
+            <p><strong>Address:</strong> {{ user[0]['Address'] or 'N/A' }}</p>
+        </div>
+    </div>
+    <div class="back-link">
+        <center><a href="{{url_for('home')}}">Back to Home</a> </center>
+    </div>
+</div>
+{% endif %}
+</body>
+
+</html>

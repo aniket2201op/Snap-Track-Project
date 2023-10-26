@@ -1,0 +1,85 @@
+body{
+    background: linear-gradient(to right,rgb(89, 58, 201), rgba(69, 33, 199, 0.6));
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: yellow;
+}
+
+.container{
+    margin: 6rem 30rem;
+    display: grid;
+    height: 20rem;
+    text-align: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr, 1fr, 1fr, 1fr, 1fr;
+    border:solid rgba(79, 206, 206, 0.788) ;
+    background-color: rgb(247, 245, 245);
+    box-shadow: .3rem;
+}
+.chatbook-heading{
+    margin: 2rem 30rem;
+    text-align: center;
+    font-size: 2.2rem;
+    color: rgb(187, 255, 0);
+}
+.login-header{
+    font-size: 1.6rem;
+    color: rgb(31, 69, 192);
+}
+
+.login-btn{
+    width: 10rem;
+    height: 2.3rem;
+    font-size: 1rem;
+    letter-spacing: .08rem;
+    border-radius: 10rem;
+    border: none;
+    outline: none;
+    background: linear-gradient(to right,rgb(89, 58, 201), rgba(69, 33, 199, 0.6) );
+    cursor: pointer;
+    justify-self: center;
+    margin-bottom: 1rem;
+
+}
+.login-btn:hover{
+    background: linear-gradient(to left,rgb(89, 58, 201), rgba(69, 33, 199, 0.6) );
+}
+.login-btn:active{
+    transform: translateY(.2rem);
+}
+.username{
+    font-size: 1.2rem;
+    color: coral;
+    padding-right: .2rem;
+    padding-bottom: .9rem;
+    cursor: pointer;
+    
+}
+.password{
+    font-size: 1.2rem;
+    color: coral;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+.txt,.pass{
+    color: blueviolet;
+    font-size: .9rem;
+    border-radius: .3rem;
+    outline:blueviolet;
+    width: 10rem;
+    border-radius: 10rem;
+    border-top: 0;
+    padding: .3rem;
+    border-left: 0;
+    height: 1.5rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    /* box-shadow: .2rem .2rem .4rem .4rem rgba(0, 0, 0, .4); */
+}
+
+.xtra a{
+    color: rgb(47, 0, 255);
+}
+

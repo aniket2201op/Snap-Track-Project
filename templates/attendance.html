@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+
+    <!-- <link rel="stylesheet" href="/static/style.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='owl.carousel.min.css')}}">
+    <!-- <link rel="stylesheet" href="/static/owl.carousel.min.css"> -->
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="/static/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css')}}">
+    <style>
+        body {
+            background-image: url('/static/images/img.jpeg');
+            ;
+        }
+    </style>
+    <!-- Style -->
+    <style>
+        .container2 {
+            text-align: center;
+
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+        }
+
+        .desc {
+            background-color: #f8f4f4;
+            width: max-content;
+            justify-content: center;
+            margin-top: 150px;
+            color: #111;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            color: #fff;
+            background-color: #007BFF;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .a_h1 {
+            text-align: center;
+        }
+    </style>
+
+
+    <title>Snap-Track</title>
+</head>
+
+<body>
+
+
+    <div class="site-mobile-menu">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <header class="site-navbar" role="banner">
+
+        <div class="container">
+            <div class="row align-items-center">
+
+                <div class="col-11 col-xl-2">
+                    <h1 class="mb-0 site-logo"><a href="{{url_for('home')}}" class="text-white mb-0">Snap Track</a></h1>
+                </div>
+                <div class="col-12 col-md-10 d-none d-xl-block">
+                    <nav class="site-navigation position-relative text-right" role="navigation">
+
+                        <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                            <li><a href="{{url_for('home')}}"><span>Home </span></a></li>
+                            <!-- <a href="/" onclick="loadContent('home')">Home</a> -->
+                            <li class="active"><a href="{{url_for('attendance')}}"><span>Attendance</span></a></li>
+                            <li><a href="{{ url_for('user_profile')}}"><span>Profiles</span></a></li>
+                            <!-- <a href="/user/1" onclick="loadContent('user_profile', 1)">Profiles</a> -->
+                            <li class="has-children">
+                                <a href="#"><span>More</span></a>
+                                <ul class="dropdown arrow-top">
+                                    <li><a href="{{url_for('update_profile')}}">Add or remove subject</a></li>
+                                    <li><a href="{{url_for('attendance')}}">Upload Attendance sheet</a></li>
+                                    <li class="has-children">
+                                        <a href="#">Download Excel</a>
+                                        <ul class="dropdown">
+                                            {% for file in files %}
+                                            <li><a
+                                                    href="{{ url_for('download_file', filename=file, file_suffix=file_suffix) }}">{{
+                                                    file }}</a></li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="#">Settings</a>
+                                        <ul class="dropdown">
+                                            <li><a href="{{url_for('change_password')}}">Change password</a></li>
+                                            <li><a href="#">??</a></li>
+
+                                        </ul>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li><a href="logout"><span>Log out</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- <a href="/" onclick="loadContent('home')">Home</a> -->
+                <!-- <a href="/user/1" onclick="loadContent('user_profile', 1)">Profiles</a> -->
+
+                <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a
+                        href="#" class="site-menu-toggle js-menu-toggle text-white"><span
+                            class="icon-menu h3"></span></a></div>
+
+            </div>
+
+        </div>
+        </div>
+
+    </header>
+
+
+    <div class="text5">
+        <p class="desc"> Hello {{session.username}}, to mark the attendance you have given the following options select
+            any one as per your need. <br>
+            1] Upload attendance sheet - Upload the sheet which already has the attendance marked. Which you want to
+            continue. <br>
+            2] Use Existing attendance sheet - Use the attendnace sheet which you have already uploaded to the server.
+            <br>
+            3] Create new attendance sheet - Create new attendance sheet, if you want to start from scratch.
+            <br><b style="margin-left: 450px;">Scroll Down !!</b>
+        </p>
+
+    </div>
+
+
+    <div class="container2">
+        <h1 class="a_h1" style="text-align: center;">Attendance</h1>
+        
+        <form method=post enctype=multipart/form-data>
+
+            <p>
+                <label for="file" class="mr-2" style="color: #111; font-size: 20px;"><b>Upload attendance sheet:</b></label> <br>
+                <input type=file value="Upload attendance sheet" name=file>
+               <input type=submit class="btn btn-primary" value=Upload>
+          </form>
+        <!-- <button id="uploadButton"><input type="file" name="file" style="display: none;">Upload Attendance
+            Sheet</button> -->
+        <p>OR</p>
+        <button id="newSheetButton" onclick="changeURL1()">Use Existing Attendance Sheet</button>
+        <p>OR</p>
+        <button id="newSheetButton" onclick="changeURL2()">Create New Attendance Sheet</button>
+        <br><br>
+    </div>
+
+    <script>
+        function changeURL1() {
+            // Replace the URL with your localhost URL
+            window.location.href = "http://localhost:5000/ocr";
+        }
+        function changeURL2() {
+            // Replace the URL with your localhost URL
+            window.location.href = "http://localhost:5000/new_sheet";
+        }
+    </script>
+
+    <script src="{{ url_for('static', filename='jquery-3.3.1.min.js.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='jquery.sticky.js') }}"></script>
+
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+    <!-- <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    <script src="js/main.js"></script> -->
+</body>
+
+</html>
